@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Boss Footswitch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Boss Footswitch</h1>
+    <p>Katana 50 Gen3 · BT-Dual</p>
+  </header>
+
+  <!-- Status bar -->
+  <div id="status-bar">
+    <div class="indicator">
+      <span class="dot err" id="ble-dot"></span>
+      <span>BLE</span>
+    </div>
+    <div class="indicator">
+      <span class="dot err" id="ws-dot"></span>
+      <span id="ws-label">Web</span>
+    </div>
+  </div>
+
+  <!-- Mode banner -->
+  <div id="mode-banner">Channel Mode</div>
+
+  <!-- Virtual pedal board: 2 rows × 3 cols
+       Row 1: A1 | A2 | SOLO
+       Row 2: B1 | B2 | MODE  -->
+  <div id="pedal">
+
+    <div class="sw" id="sw-A1" data-led="inactive" data-active="false">
+      <div class="led-ring"></div>
+      <div class="btn-cap">
+        <span class="label">A1</span>
+        <span class="sub">Patch</span>
+      </div>
+    </div>
+
+    <div class="sw" id="sw-A2" data-led="inactive" data-active="false">
+      <div class="led-ring"></div>
+      <div class="btn-cap">
+        <span class="label">A2</span>
+        <span class="sub">Patch</span>
+      </div>
+    </div>
+
+    <div class="sw" id="sw-SOLO" data-led="inactive" data-active="false">
+      <div class="led-ring"></div>
+      <div class="btn-cap">
+        <span class="label">SOLO</span>
+        <span class="sub"></span>
+      </div>
+    </div>
+
+    <div class="sw" id="sw-B1" data-led="inactive" data-active="false">
+      <div class="led-ring"></div>
+      <div class="btn-cap">
+        <span class="label">B1</span>
+        <span class="sub">Patch</span>
+      </div>
+    </div>
+
+    <div class="sw" id="sw-B2" data-led="inactive" data-active="false">
+      <div class="led-ring"></div>
+      <div class="btn-cap">
+        <span class="label">B2</span>
+        <span class="sub">Patch</span>
+      </div>
+    </div>
+
+    <div class="sw" id="sw-MODE" data-led="inactive" data-active="false">
+      <div class="led-ring"></div>
+      <div class="btn-cap">
+        <span class="label">MODE</span>
+        <span class="sub">FX →</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BLE Log -->
+  <div id="ble-log-wrap">
+    <div id="ble-log-header">
+      <span>BLE Log</span>
+      <button id="log-clear-btn" onclick="clearLog()">Vymazat</button>
+    </div>
+    <div id="ble-log"></div>
+  </div>
+
+  <!-- MIDI settings -->
+  <details>
+    <summary>MIDI Settings</summary>
+    <form id="settings-form">
+
+      <label class="full-col">
+        BLE Target Name
+        <input type="text" id="cfg-ble-target" value="KATANA 3 MIDI" placeholder="KATANA 3 MIDI" style="background:#111;border:1px solid #333;border-radius:6px;color:#eee;padding:.4rem .6rem;font-size:.9rem">
+      </label>
+
+      <label class="full-col">
+        MIDI Channel (1–16)
+        <input type="number" id="cfg-channel" min="1" max="16" value="1">
+      </label>
+
+      <label>PC — A1 <input type="number" id="cfg-pc-a1" min="0" max="127" value="1"></label>
+      <label>PC — A2 <input type="number" id="cfg-pc-a2" min="0" max="127" value="2"></label>
+      <label>PC — B1 <input type="number" id="cfg-pc-b1" min="0" max="127" value="6"></label>
+      <label>PC — B2 <input type="number" id="cfg-pc-b2" min="0" max="127" value="7"></label>
+
+      <label>CC — Solo   <input type="number" id="cfg-cc-solo"   min="0" max="127" value="73"></label>
+      <label>CC — Boost  <input type="number" id="cfg-cc-boost"  min="0" max="127" value="16"></label>
+      <label>CC — Mod    <input type="number" id="cfg-cc-mod"    min="0" max="127" value="17"></label>
+      <label>CC — Delay  <input type="number" id="cfg-cc-delay"  min="0" max="127" value="19"></label>
+      <label>CC — FX     <input type="number" id="cfg-cc-fx"     min="0" max="127" value="18"></label>
+      <label>CC — Reverb <input type="number" id="cfg-cc-reverb" min="0" max="127" value="20"></label>
+
+      <div class="full-col">
+        <button type="submit" class="save-btn">Save Settings</button>
+        <p class="save-msg" id="save-msg"></p>
+      </div>
+
+    </form>
+  </details>
+
+  <!-- WiFi reset -->
+  <details>
+    <summary>WiFi</summary>
+    <div id="settings-form">
+      <div class="full-col">
+        <button type="button" class="save-btn" id="wifi-reset-btn"
+                style="background:#c0392b"
+                onclick="wifiReset()">Reset WiFi &amp; reboot to setup</button>
+        <p class="save-msg" id="wifi-reset-msg"></p>
+      </div>
+    </div>
+  </details>
+
+  <script src="app.js"></script>
+</body>
+</html>

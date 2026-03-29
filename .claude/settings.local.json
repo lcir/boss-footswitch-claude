@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//dev/**)",
+      "Bash(pio run:*)",
+      "Bash(stty -f /dev/cu.usbserial-0001 115200)",
+      "Bash(timeout 5 cat /dev/cu.usbserial-0001)",
+      "Bash(stty -f /dev/cu.usbserial-0001 115200 raw)",
+      "Bash(python3 -c \":*)",
+      "WebSearch",
+      "WebFetch(domain:www.vguitarforums.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:manualzz.com)",
+      "WebFetch(domain:www.sweetwater.com)",
+      "WebFetch(domain:eatonplan.tech)",
+      "WebFetch(domain:civade.com)",
+      "WebFetch(domain:thegearforum.com)",
+      "WebFetch(domain:forum.morningstar.io)",
+      "WebFetch(domain:www.scuffhamamps.com)",
+      "Bash(grep -E \"\\\\.\\(c|h|cpp\\)$\")",
+      "Bash(python3 -m esptool --port /dev/cu.usbserial-0001 erase_region 0x9000 0x6000)",
+      "Bash(~/.platformio/packages/tool-esptoolpy/esptool.py --port /dev/cu.usbserial-0001 erase_region 0x9000 0x6000)",
+      "Bash(python3 ~/.platformio/packages/tool-esptoolpy/esptool.py --port /dev/cu.usbserial-0001 erase_region 0x9000 0x6000)",
+      "Bash(pio device:*)",
+      "Bash(ping -c 1 -t 2 boss-footswitch.local)",
+      "Bash(curl -s --connect-timeout 3 http://192.168.10.206/api/config)",
+      "Bash(curl -s --connect-timeout 3 http://192.168.10.206/)",
+      "Bash(ls /dev/cu.usb* /dev/tty.usb*)",
+      "Bash(timeout 30 cat /dev/cu.usbserial-0001)",
+      "Bash(gtimeout 30 cat /dev/cu.usbserial-0001)"
+    ]
+  }
+}
