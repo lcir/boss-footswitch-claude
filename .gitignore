@@ -1,0 +1,6 @@
+.pio/
+.pio-core/
+.vscode/
+.idea/
+cmake-build-*/
+.DS_Store
