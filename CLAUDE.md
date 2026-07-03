@@ -226,3 +226,9 @@ When making changes, manually verify:
 - **NimBLE + WiFi coexistence** — both use the ESP32 radio; avoid simultaneous heavy activity
 - **Single MIDI channel** — all messages go on the same configurable MIDI channel
 - **Arduino `delay()` is forbidden** in any module except one-time setup sequences
+
+## Relationship to boss-footswitch-codex
+
+This Arduino/PlatformIO implementation is the older reference variant; the active primary implementation is `../boss-footswitch-codex` (ESP-IDF v5.x). Prefer making changes there unless explicitly asked to work on this variant.
+
+Shared hard safety rule: **do not send Gen 2 / MKII-style state query traffic** to the amp over BLE MIDI — earlier experiments destabilized the amp UI.
